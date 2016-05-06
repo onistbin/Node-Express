@@ -26,6 +26,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
 
+//使用会话
 app.use(session({
     secret: 'keyboard cat'
 }));
@@ -38,6 +39,8 @@ app.get('/', function(req, res) {
     });
 });
 
+
+//增加功能
 app.post('/add', function(req, res) {
   db.add({title: req.body.title});
   res.redirect('/');
@@ -51,6 +54,8 @@ app.get('/get/:index', function(req, res) {
     res.send(article);
 });
 
+
+//删除功能
 app.get('/del', function(req, res) {
 
     let index = req.query.index;
@@ -59,6 +64,7 @@ app.get('/del', function(req, res) {
 });
 
 
+//修改功能
 app.post('/update', function(req, res) {
 
   var index = req.body.index;
@@ -69,7 +75,7 @@ app.post('/update', function(req, res) {
 
 
 
-//登陆退出功能
+//登陆功能
 app.post('/login', function(req, res) {
 
     let loginname = req.body.loginname;
@@ -84,6 +90,7 @@ app.post('/login', function(req, res) {
     }
 });
 
+//退出功能
 app.get('/logout', function(req, res) {
 
     req.session.logined = false;

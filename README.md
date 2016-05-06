@@ -9,7 +9,6 @@ npm start
 /**
  * Created by wangjianbing on 16/5/6.
  */
-
 var express = require('express');
 
 
@@ -21,8 +20,6 @@ var subRouter = express.Router();
 //中间件
 
 function testMiddleWare(req, res, next) {
-
-
     console.log("test middleWare");
     //req.log = function(info) {
     //
@@ -30,10 +27,7 @@ function testMiddleWare(req, res, next) {
     //}
     next();
 }
-
 function testMiddleWare2(req, res, next) {
-
-
     console.log("test middleWare 222222");
     //req.log = function(info) {
     //
@@ -41,37 +35,23 @@ function testMiddleWare2(req, res, next) {
     //}
     next();
 }
-
 router.use(testMiddleWare2);
 router.get('/', function(req, res) {
-
     res.send("test router1");
 });
-
 router.get('/url1', function(req, res) {
-
     res.send("test url11");
 });
-
-
 subRouter.get('/', function(req, res) {
-
     res.send("test subRouter");
 });
-
 router.use('/subrouter', subRouter);
 var app = express();
-
 app.use(testMiddleWare);
-
 app.get('/', function(req, res) {
-
     res.send("Hellw Express");
 });
-
-
 app.use('/router1', router);
-
 app.listen(3000);
 
 
